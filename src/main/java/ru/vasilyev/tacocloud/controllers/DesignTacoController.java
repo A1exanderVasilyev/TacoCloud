@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 public class DesignTacoController {
 
     @PostMapping
-    public String processTaco(@Valid Taco taco,
-                              @ModelAttribute TacoOrder tacoOrder, Errors errors) {
+    public String processTaco(@Valid Taco taco, Errors errors,
+                              @ModelAttribute TacoOrder tacoOrder) {
         if (errors.hasErrors()) {
             return "design";
         }
