@@ -2,6 +2,8 @@ package ru.vasilyev.tacocloud.controllers;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -65,6 +67,11 @@ public class DesignTacoController {
 
     @GetMapping
     public String showDesignForm() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            System.out.println("User: " + authentication.getName());
+            System.out.println("Authorities: " + authentication.getAuthorities());
+        }
         return "design";
     }
 
