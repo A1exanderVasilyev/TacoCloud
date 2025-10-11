@@ -39,7 +39,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/design", "/orders").hasRole("USER")
                         .requestMatchers("/", "/**").permitAll()
